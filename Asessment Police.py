@@ -19,7 +19,7 @@ def get_licence_number():
         if len(licence) == 8:
             return licence
 
-        print("Licence number invalid.")
+        print("Licence number invalid (needs 8 characters).")
 
 
 def get_posted_speed():
@@ -37,3 +37,19 @@ def get_posted_speed():
         # Ensures the program does not crash
         except ValueError:
             print("Please enter an integer number.")
+    
+def get_recorded_speed(posted_speed):
+    # Get the recorded speed
+    while True:
+        try:
+            speed = int(input("Enter recorded speed (km/h): "))
+            #checks that the recorded speed is over the speed limit
+            if speed > posted_speed:
+                return speed
+
+            print("Recorded speed must be greater than the posted speed.")
+        #validates the speed entered
+        except ValueError:
+            print("Please enter a whole number.")
+            
+            
