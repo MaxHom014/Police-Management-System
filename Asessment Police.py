@@ -52,4 +52,31 @@ def get_recorded_speed(posted_speed):
         except ValueError:
             print("Please enter a whole number.")
             
+
+def calculate_fine(posted_speed, recorded_speed):
+    #Calculates how much is owed in fines
+    over = recorded_speed - posted_speed
+
+    if over <= 10:
+        return 30
+    elif over <= 20:
+        return 80
+    elif over <= 30:
+        return 170
+    elif over <= 40:
+        return 400
+    else:
+        return 630
+    #A loop that tests wether or not the speed was over by a certain amount to calculate fine
+
+
+
+
+
+            
+get_driver_name()
+get_licence_number()
+posted_speed = get_posted_speed()
+recorded_speed = get_recorded_speed(posted_speed)
+calculate_fine(recorded_speed, posted_speed)
             
