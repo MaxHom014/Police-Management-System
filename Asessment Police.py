@@ -70,13 +70,11 @@ def calculate_fine(posted_speed, recorded_speed):
     #A loop that tests wether or not the speed was over by a certain amount to calculate fine
 
 
+def check_wanted(driver_name, wanted_list):
+    #checks the wanted list and then finds if they are there
+    for wanted_name in wanted_list:
+        if driver_name.lower() == wanted_name.lower():
+            return True
 
-
-
-            
-get_driver_name()
-get_licence_number()
-posted_speed = get_posted_speed()
-recorded_speed = get_recorded_speed(posted_speed)
-calculate_fine(recorded_speed, posted_speed)
+    return False
             
