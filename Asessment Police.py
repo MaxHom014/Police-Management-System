@@ -77,4 +77,24 @@ def check_wanted(driver_name, wanted_list):
             return True
 
     return False
-            
+
+
+def record_offence(offences, wanted_list):
+    #grabs a little summary of the recorded offence from the previous functions
+    print("Record a Speeding Offence")
+
+    name = get_driver_name()
+    licence = get_licence_number()
+    posted_speed = get_posted_speed()
+    recorded_speed = get_recorded_speed(posted_speed)
+
+    over = recorded_speed - posted_speed
+    fine = calculate_fine(posted_speed, recorded_speed)
+
+
+
+
+
+posted_speed = get_posted_speed()
+recorded_speed = get_recorded_speed(posted_speed)
+calculate_fine(recorded_speed, posted_speed)
