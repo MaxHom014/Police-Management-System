@@ -11,7 +11,7 @@ def get_driver_name():
 
 
 def get_licence_number():
-    # get the licence number
+    # Get the licence number
     while True:
         licence = input("Enter licence number: ")
 
@@ -37,24 +37,27 @@ def get_posted_speed():
         # Ensures the program does not crash
         except ValueError:
             print("Please enter an integer number.")
-    
+
+
 def get_recorded_speed(posted_speed):
     # Get the recorded speed
     while True:
         try:
             speed = int(input("Enter recorded speed (km/h): "))
-            #checks that the recorded speed is over the speed limit
+
+            # Checks that the recorded speed is over the speed limit
             if speed > posted_speed:
                 return speed
 
             print("Recorded speed must be greater than the posted speed.")
-        #validates the speed entered
+
+        # Validates the speed entered
         except ValueError:
             print("Please enter a whole number.")
-            
+
 
 def calculate_fine(posted_speed, recorded_speed):
-    #Calculates how much is owed in fines
+    # Calculates how much is owed in fines
     over = recorded_speed - posted_speed
 
     if over <= 10:
@@ -67,11 +70,13 @@ def calculate_fine(posted_speed, recorded_speed):
         return 400
     else:
         return 630
-    #A loop that tests wether or not the speed was over by a certain amount to calculate fine
+
+    # Tests how far over the speed limit the driver was
+    # to calculate the correct fine
 
 
 def check_wanted(driver_name, wanted_list):
-    #checks the wanted list and then finds if they are there
+    # Checks the wanted list to find if the driver is on it
     for wanted_name in wanted_list:
         if driver_name.lower() == wanted_name.lower():
             return True
@@ -80,7 +85,7 @@ def check_wanted(driver_name, wanted_list):
 
 
 def record_offence(offences, wanted_list):
-    #grabs a little summary of the recorded offence from the previous functions
+    # Gets all the information needed to record the offence
     print("Record a Speeding Offence")
 
     name = get_driver_name()
@@ -91,10 +96,23 @@ def record_offence(offences, wanted_list):
     over = recorded_speed - posted_speed
     fine = calculate_fine(posted_speed, recorded_speed)
 
+    # Store all information about the offence in a dictionary
+    offence = {
+        "name": name,
+        "licence": licence,
+        "posted": posted_speed,
+        "speed": recorded_speed,
+        "over": over,
+        "fine": fine
+    }
 
+    # Add the offence to the list of recorded offences
+    offences.append(offence)
 
+    print("Offence recorded.")
+    print("Fine: $" + (fine))
 
+    # Check whether the driver is on the wanted list
+    if check_wanted(name, wanted_list):
+        print("WARNING: This driver is on the wanted list!")
 
-posted_speed = get_posted_speed()
-recorded_speed = get_recorded_speed(posted_speed)
-calculate_fine(recorded_speed, posted_speed)
