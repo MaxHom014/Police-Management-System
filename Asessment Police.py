@@ -136,4 +136,21 @@ def view_recorded_offences(offences):
               offence["speed"],
               offence["over"],
               "$" + str(offence["fine"]))
+        
+def patrol_summary(offences):
+    #summary of what was recorded during the patrol
+    print("Patrol Summary")
+
+    if len(offences) == 0:
+        print("No speeding offences have been recorded.")
+        return
+
+    total_fines = 0
+
+    # Add together the fines from every recorded offence
+    for offence in offences:
+        total_fines += offence["fine"]
+
+    print("Number of offences:", len(offences))
+    print("Total fines: $" + str(total_fines))
 
