@@ -116,3 +116,24 @@ def record_offence(offences, wanted_list):
     if check_wanted(name, wanted_list):
         print("WARNING: This driver is on the wanted list!")
 
+def view_recorded_offences(offences):
+    # View the recorded offences from the main menu and shows list
+    print("View Recorded Offences")
+
+    if len(offences) == 0:
+        #In case there isn't any on the list 
+        print("No speeding offences have been recorded.")
+        return
+
+    print("Driver     Licence     Limit   Speed   Over    Fine")
+    print("=" * 64)
+
+    # Display every recorded offence
+    for offence in offences:
+        print(offence["name"],
+              offence["licence"],
+              offence["posted"],
+              offence["speed"],
+              offence["over"],
+              "$" + str(offence["fine"]))
+
