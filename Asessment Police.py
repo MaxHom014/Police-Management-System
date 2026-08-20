@@ -15,12 +15,14 @@ def get_licence_number():
     while True:
         licence = input("Enter licence number: ")
 
-        # Licence number should be 8 characters
-        if len(licence) == 8:
+        # Licence must be 8 characters:
+        # first 2 must be letters and last 6 must be numbers
+        if (len(licence) == 8 and
+                licence[:2].isalpha() and
+                licence[2:].isdigit()):
             return licence
 
-        print("Licence number invalid (needs 8 characters).")
-
+        print("Licence number invalid (needs 2 letters followed by 6 numbers).")
 
 def get_posted_speed():
     # Get the speed limit
