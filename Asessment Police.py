@@ -112,7 +112,7 @@ def record_offence(offences, wanted_list):
     offences.append(offence)
 
     print("Offence recorded.")
-    print("Fine: $" + (fine))
+    print("Fine: $" + str(fine))
 
     # Check whether the driver is on the wanted list
     if check_wanted(name, wanted_list):
