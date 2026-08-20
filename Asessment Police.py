@@ -161,3 +161,41 @@ def display_menu():
     print("3. Display patrol summary")
     print("4. Exit")
 
+def main():
+    # List used to store all recorded offences
+    offences = []
+
+    # List of wanted people
+    wanted_list = [
+        "John Smith",
+        "May Jones",
+        "Peter Brown",
+        "Jack Wilson",
+        "Sarah Taylor",
+        "Liam Anderson",
+        "Olivia Martin",
+        "Noah Thompson"
+    ]
+
+    # Keep displaying the menu until the user chooses to exit
+    while True:
+        display_menu()
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            record_offence(offences, wanted_list)
+
+        elif choice == "2":
+            view_recorded_offences(offences)
+
+        elif choice == "3":
+            patrol_summary(offences)
+
+        elif choice == "4":
+            print("Exiting program")
+            break
+
+        else:
+            print("Invalid choice. Please select 1 to 4.")
+
