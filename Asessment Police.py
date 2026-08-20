@@ -154,3 +154,10 @@ def patrol_summary(offences):
     print("Number of offences:", len(offences))
     print("Total fines: $" + str(total_fines))
 
+def display_menu():
+    print("Main Menu")
+    print("1. Record a speeding offence")
+    print("2. View all recorded offences")
+    print("3. Display patrol summary")
+    print("4. Exit")
+
