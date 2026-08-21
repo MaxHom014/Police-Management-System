@@ -151,7 +151,7 @@ def search_driver(offences):
         found = False
         total_fines = 0
 
-        print("\nDriver Offences")
+        print("Driver Offences")
         print("=" * 64)
 
         # Check every offence for a matching name
@@ -180,7 +180,7 @@ def search_driver(offences):
         found = False
         total_fines = 0
 
-        print("\nDriver Offences")
+        print("Driver Offences")
         print("=" * 64)
 
         # Check every offence for a matching licence
