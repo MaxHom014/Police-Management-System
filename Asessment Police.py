@@ -137,6 +137,76 @@ def view_recorded_offences(offences):
               "$" + str(offence["fine"]))
 
 
+def search_driver(offences):
+    # Search for a driver using their name or licence number
+    print("Search Driver")
+    print("1. Search by driver name")
+    print("2. Search by licence number")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        search_name = input("Enter driver name: ")
+
+        found = False
+        total_fines = 0
+
+        print("\nDriver Offences")
+        print("=" * 64)
+
+        # Check every offence for a matching name
+        for offence in offences:
+            if offence["name"].lower() == search_name.lower():
+                found = True
+
+                print("Driver:", offence["name"])
+                print("Licence:", offence["licence"])
+                print("Posted speed:", offence["posted"], "km/h")
+                print("Recorded speed:", offence["speed"], "km/h")
+                print("Over limit:", offence["over"], "km/h")
+                print("Fine: $" + str(offence["fine"]))
+                print("-" * 64)
+
+                total_fines += offence["fine"]
+
+        if found:
+            print("Total fines for this driver: $" + str(total_fines))
+        else:
+            print("No offences found for this driver.")
+
+    elif choice == "2":
+        search_licence = input("Enter licence number: ")
+
+        found = False
+        total_fines = 0
+
+        print("\nDriver Offences")
+        print("=" * 64)
+
+        # Check every offence for a matching licence
+        for offence in offences:
+            if offence["licence"].lower() == search_licence.lower():
+                found = True
+
+                print("Driver:", offence["name"])
+                print("Licence:", offence["licence"])
+                print("Posted speed:", offence["posted"], "km/h")
+                print("Recorded speed:", offence["speed"], "km/h")
+                print("Over limit:", offence["over"], "km/h")
+                print("Fine: $" + str(offence["fine"]))
+                print("-" * 64)
+
+                total_fines += offence["fine"]
+
+        if found:
+            print("Total fines for this driver: $" + str(total_fines))
+        else:
+            print("No offences found for this licence number.")
+
+    else:
+        print("Invalid choice.")
+
+
 def patrol_summary(offences):
     print("Patrol Summary")
 
@@ -177,7 +247,8 @@ def display_menu():
     print("1. Record a speeding offence")
     print("2. View all recorded offences")
     print("3. Display patrol summary")
-    print("4. Exit")
+    print("4. Search driver")
+    print("5. Exit")
 
 
 def main():
@@ -212,11 +283,14 @@ def main():
             patrol_summary(offences)
 
         elif choice == "4":
+            search_driver(offences)
+
+        elif choice == "5":
             print("Exiting program")
             break
 
         else:
-            print("Invalid choice. Please select 1 to 4.")
+            print("Invalid choice. Please select 1 to 5.")
 
 
 main()
