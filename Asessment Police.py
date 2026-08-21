@@ -1,5 +1,5 @@
 def get_driver_name():
-    # Keep prompting user until an entry has been made
+    # Keep prompting user until an input is made
     while True:
         name = input("Enter full name of driver: ")
 
@@ -23,6 +23,7 @@ def get_licence_number():
             return licence
 
         print("Licence number invalid (needs 2 letters followed by 6 numbers).")
+
 
 def get_posted_speed():
     # Get the speed limit
@@ -73,9 +74,6 @@ def calculate_fine(posted_speed, recorded_speed):
     else:
         return 630
 
-    # Tests how far over the speed limit the driver was
-    # to calculate the correct fine
-
 
 def check_wanted(driver_name, wanted_list):
     # Checks the wanted list to find if the driver is on it
@@ -118,12 +116,11 @@ def record_offence(offences, wanted_list):
     if check_wanted(name, wanted_list):
         print("WARNING: This driver is on the wanted list!")
 
+
 def view_recorded_offences(offences):
-    # View the recorded offences from the main menu and shows list
     print("View Recorded Offences")
 
     if len(offences) == 0:
-        #In case there isn't any on the list 
         print("No speeding offences have been recorded.")
         return
 
@@ -138,9 +135,9 @@ def view_recorded_offences(offences):
               offence["speed"],
               offence["over"],
               "$" + str(offence["fine"]))
-        
+
+
 def patrol_summary(offences):
-    #summary of what was recorded during the patrol
     print("Patrol Summary")
 
     if len(offences) == 0:
@@ -148,13 +145,32 @@ def patrol_summary(offences):
         return
 
     total_fines = 0
+    total_over = 0
 
-    # Add together the fines from every recorded offence
+    # Start with the first offence as the highest
+    highest_offence = offences[0]
+
+    # Go through every recorded offence
     for offence in offences:
         total_fines += offence["fine"]
+        total_over += offence["over"]
 
-    print("Number of offences:", len(offences))
-    print("Total fines: $" + str(total_fines))
+        # Find the offence with the highest speed over the limit
+        if offence["over"] > highest_offence["over"]:
+            highest_offence = offence
+
+    # Calculate average speed over the limit
+    average_over = total_over / len(offences)
+
+    print("Amount of offences:", len(offences))
+    print("Total fines issued: $" + str(total_fines))
+    print("Average speed over limit:",
+          round(average_over, 1), "km/h")
+
+    print("Highest offence:")
+    print("Driver:", highest_offence["name"])
+    print("Over limit:", highest_offence["over"], "km/h")
+
 
 def display_menu():
     print("Main Menu")
@@ -162,6 +178,7 @@ def display_menu():
     print("2. View all recorded offences")
     print("3. Display patrol summary")
     print("4. Exit")
+
 
 def main():
     # List used to store all recorded offences
@@ -200,4 +217,6 @@ def main():
 
         else:
             print("Invalid choice. Please select 1 to 4.")
+
+
 main()
