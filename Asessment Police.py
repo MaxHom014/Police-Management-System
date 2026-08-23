@@ -1,7 +1,8 @@
 def get_driver_name():
-    # Keep prompting user until an input is made
+    # Keep prompting user until a valid input is made
     while True:
-        name = input("Enter full name of driver: ")
+        # .strip() removes accidental leading and trailing whitespace
+        name = input("Enter full name of driver: ").strip()
 
         # Test whether there is no name
         if name != "":
@@ -13,14 +14,14 @@ def get_driver_name():
 def get_licence_number():
     # Get the licence number
     while True:
-        licence = input("Enter licence number: ")
+        licence = input("Enter licence number: ").strip()
 
         # Licence must be 8 characters:
         # first 2 must be letters and last 6 must be numbers
         if (len(licence) == 8 and
                 licence[:2].isalpha() and
                 licence[2:].isdigit()):
-            return licence
+            return licence.upper()  # Normalize licence to uppercase
 
         print("Licence number invalid (needs 2 letters followed by 6 numbers).")
 
@@ -37,7 +38,7 @@ def get_posted_speed():
 
             print("Posted speed must be between 30 and 110 km/h.")
 
-        # Ensures the program does not crash
+        # Ensures the program does not crash on non-integer input
         except ValueError:
             print("Please enter an integer number.")
 
@@ -76,9 +77,11 @@ def calculate_fine(posted_speed, recorded_speed):
 
 
 def check_wanted(driver_name, wanted_list):
-    # Checks the wanted list to find if the driver is on it
+    # Checks the wanted list using stripped, lower-case comparison
+    clean_driver_name = driver_name.strip().lower()
+
     for wanted_name in wanted_list:
-        if driver_name.lower() == wanted_name.lower():
+        if clean_driver_name == wanted_name.strip().lower():
             return True
 
     return False
@@ -124,7 +127,7 @@ def view_recorded_offences(offences):
         print("No speeding offences have been recorded.")
         return
 
-    print("Driver     Licence     Limit   Speed   Over    Fine")
+    print("Driver       Licence     Limit   Speed   Over    Fine")
     print("=" * 64)
 
     # Display every recorded offence
@@ -143,10 +146,10 @@ def search_driver(offences):
     print("1. Search by driver name")
     print("2. Search by licence number")
 
-    choice = input("Enter your choice: ")
+    choice = input("Enter your choice: ").strip()
 
     if choice == "1":
-        search_name = input("Enter driver name: ")
+        search_name = input("Enter driver name: ").strip().lower()
 
         found = False
         total_fines = 0
@@ -156,7 +159,7 @@ def search_driver(offences):
 
         # Check every offence for a matching name
         for offence in offences:
-            if offence["name"].lower() == search_name.lower():
+            if offence["name"].strip().lower() == search_name:
                 found = True
 
                 print("Driver:", offence["name"])
@@ -175,7 +178,7 @@ def search_driver(offences):
             print("No offences found for this driver.")
 
     elif choice == "2":
-        search_licence = input("Enter licence number: ")
+        search_licence = input("Enter licence number: ").strip().lower()
 
         found = False
         total_fines = 0
@@ -185,7 +188,7 @@ def search_driver(offences):
 
         # Check every offence for a matching licence
         for offence in offences:
-            if offence["licence"].lower() == search_licence.lower():
+            if offence["licence"].strip().lower() == search_licence:
                 found = True
 
                 print("Driver:", offence["name"])
@@ -271,7 +274,7 @@ def main():
     while True:
         display_menu()
 
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice: ").strip()
 
         if choice == "1":
             record_offence(offences, wanted_list)
@@ -294,3 +297,4 @@ def main():
 
 
 main()
+
