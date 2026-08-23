@@ -125,6 +125,7 @@ def view_recorded_offences(offences):
 
     if len(offences) == 0:
         print("No speeding offences have been recorded.")
+        #if no speeding offences were recorded
         return
 
     print("Driver       Licence     Limit   Speed   Over    Fine")
@@ -176,6 +177,7 @@ def search_driver(offences):
             print("Total fines for this driver: $" + str(total_fines))
         else:
             print("No offences found for this driver.")
+            #checks if there are any offences found within the driver name
 
     elif choice == "2":
         search_licence = input("Enter licence number: ").strip().lower()
@@ -208,6 +210,7 @@ def search_driver(offences):
 
     else:
         print("Invalid choice.")
+        #checks if there are any offences found within the lisense number
 
 
 def patrol_summary(offences):
@@ -246,6 +249,7 @@ def patrol_summary(offences):
 
 
 def display_menu():
+    #Displays the options for menu
     print("Main Menu")
     print("1. Record a speeding offence")
     print("2. View all recorded offences")
@@ -291,10 +295,11 @@ def main():
         elif choice == "5":
             print("Exiting program")
             break
+            #ends program
 
         else:
             print("Invalid choice. Please select 1 to 5.")
 
 
 main()
-
+#calls the main function
