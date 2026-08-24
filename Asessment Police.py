@@ -121,6 +121,7 @@ def record_offence(offences, wanted_list):
 
 
 def view_recorded_offences(offences):
+    #views all offences that have been recorded so far
     print("View Recorded Offences")
 
     if len(offences) == 0:
@@ -150,6 +151,7 @@ def search_driver(offences):
     choice = input("Enter your choice: ").strip()
 
     if choice == "1":
+        #asks for the name and removes space and uppercase
         search_name = input("Enter driver name: ").strip().lower()
 
         found = False
@@ -161,6 +163,7 @@ def search_driver(offences):
         # Check every offence for a matching name
         for offence in offences:
             if offence["name"].strip().lower() == search_name:
+                #if it is found
                 found = True
 
                 print("Driver:", offence["name"])
@@ -191,6 +194,7 @@ def search_driver(offences):
         # Check every offence for a matching licence
         for offence in offences:
             if offence["licence"].strip().lower() == search_licence:
+                #when it's found
                 found = True
 
                 print("Driver:", offence["name"])
@@ -237,13 +241,14 @@ def patrol_summary(offences):
 
     # Calculate average speed over the limit
     average_over = total_over / len(offences)
-
+    #length of the dictionary to check amount in the list (How many offences)
     print("Amount of offences:", len(offences))
     print("Total fines issued: $" + str(total_fines))
     print("Average speed over limit:",
           round(average_over, 1), "km/h")
 
     print("Highest offence:")
+    #Calls highest offence function
     print("Driver:", highest_offence["name"])
     print("Over limit:", highest_offence["over"], "km/h")
 
@@ -279,6 +284,7 @@ def main():
         display_menu()
 
         choice = input("Enter your choice: ").strip()
+        #Calls function of whatever was chosen
 
         if choice == "1":
             record_offence(offences, wanted_list)
