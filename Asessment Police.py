@@ -218,6 +218,7 @@ def search_driver(offences):
 
 
 def patrol_summary(offences):
+    #finds summary of the full patrol since code started running
     print("Patrol Summary")
 
     if len(offences) == 0:
